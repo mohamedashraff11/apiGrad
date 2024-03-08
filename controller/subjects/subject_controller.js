@@ -43,7 +43,7 @@ export const getSubjects=async(req,res)=>{
         const singlesubject=await subject.findById(id).populate('subjectChapters subjectProjects subjectQuizs subjectDoctor')
          res.status(200).json({
                 success:true,
-                message:"succesfully ",
+                message:"succesfull",
                 data:singlesubject
             });
         
