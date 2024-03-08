@@ -16,6 +16,7 @@ export const createSubject=async(req,res)=>{
         subjectBooks:req.body.subjectBooks, 
         subjectQuestionbanks:req.body.subjectQuestionbanks, 
         subjectProjects:req.body.subjectProjects, 
+        subjectDoctor:req.body.subjectDoctor, 
     })
    try{
     const savedSubject=await newsubject.save();
@@ -39,7 +40,7 @@ export const createSubject=async(req,res)=>{
 export const getSubjects=async(req,res)=>{
     const id = req.body.id;
     try{
-        const singlesubject=await subject.findById(id).populate('subjectChapters subjectProjects subjectQuizs')
+        const singlesubject=await subject.findById(id).populate('subjectChapters subjectProjects subjectQuizs subjectDoctor')
          res.status(200).json({
                 success:true,
                 message:"succesfully ",
