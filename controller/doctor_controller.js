@@ -66,7 +66,7 @@ export const login=async(req,res)=>{
 export const getuserData=async(req,res)=>{
     const id = req.body.id;
     try{
-        const User=await doctor.findById(id)
+        const User=await doctor.findById(id).populate('Subjects',"subjectName subjectImage subjectDoctor")
         res.status(200).json({
             success:true,
             message:"succesfully ",
