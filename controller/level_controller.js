@@ -30,7 +30,7 @@ export const creatLevel=async(req,res)=>{
 export const getSingleLevel=async(req,res)=>{
     const id = req.body.id;
     try{
-        const level=await LevelnumSchema.findById(id).populate('Subjects',"subjectName subjectImage")
+        const level=await LevelnumSchema.findById(id).populate('Subjects',"subjectName subjectImage subjectDoctor")
         res.status(200).json({
             success:true,
             message:"succesfully ",
