@@ -7,9 +7,9 @@ const requestSchema =new mongoose.Schema(
     {
         students:[{
             type:mongoose.Types.ObjectId,
-            ref:"user" 
+            ref:"user",
+            require:true 
         }],
-        
     },
     {timestamps:true}  
 );

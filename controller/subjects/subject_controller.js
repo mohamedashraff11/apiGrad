@@ -40,7 +40,7 @@ export const createSubject=async(req,res)=>{
 export const getSubjects=async(req,res)=>{
     const id = req.body.id;
     try{
-        const singlesubject=await subject.findById(id).populate('subjectChapters subjectProjects subjectQuizs subjectDoctor')
+        const singlesubject=await subject.findById(id).populate('subjectChapters subjectProjects subjectQuizs subjectDoctor subjectRequests')
          res.status(200).json({
                 success:true,
                 message:"succesfull",

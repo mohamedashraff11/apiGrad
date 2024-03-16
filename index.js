@@ -14,7 +14,7 @@ import questionRoute from "./routes/subject/Quiz/question_router.js"
 import QuizRoute from "./routes/subject/Quiz/Quiz_router.js"
 import PostRoute from "./routes/subject/post_router.js"
 import doctorRoute from "./routes/doctor_router.js"
-
+import requestRoute from "./routes/subject/requests.js"
 
 dotenv.config();
 const app =express();  
@@ -62,7 +62,7 @@ app.use('/question',questionRoute);
 app.use('/Quiz',QuizRoute);
 app.use('/Post',PostRoute);
 app.use('/doctor',doctorRoute);
-
+app.use('/request',requestRoute);
 
 
 app.listen(port,()=>{
