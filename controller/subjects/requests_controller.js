@@ -65,6 +65,19 @@ export const getSubjects=async(req,res)=>{
     }
 }
 
+export const addStudentToSubject = async (req, res) => {
+    const subjectId = req.body.subjectId;
+    const studentId = req.body.studentId;
+
+    try {
+        // Find the subject by ID and push the student ID into the subjectStudents array
+        await subject.findByIdAndUpdate(subjectId, { $push: { subjectStudents: studentId } });
+        res.status(200).json({ success: true, message: "Student added to subject successfully." });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Failed to add student to subject.", error: err.message });
+    }
+}
 
 
 export const createUserRequest=async(req,res)=>{
@@ -88,24 +101,34 @@ export const createUserRequest=async(req,res)=>{
 }
 
 
-export const checkStudent=async(req,res)=>{
-     const studentId=req.body.studentId
-    try{
-         const student =await subject.findOne(studentId)
-      
-         if(!student){
-            return res.status(404).json({success:false,message:"student not found",})
-         }
-    
-    }
-    catch(err){
-        res.status(404).json({
-            success:false,
-            message:"faild",
-        });
-        throw(err);
-    }
 
+
+export const checkStudent = async (req, res) => {
+    const studentId = req.body.studentId;
+
+    try {
+        const Subject = await subject.findOne({ subjectStudents: studentId });
+
+        if (!Subject) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not found in any subject."
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Student found in a subject.",
+            Subject: Subject
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Failed to check student.",
+            error: err.message
+        });
+    }
 }
 
 
