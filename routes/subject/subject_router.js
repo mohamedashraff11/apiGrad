@@ -3,6 +3,7 @@ import multer from 'multer'
 import { createSubject } from "../../controller/subjects/subject_controller.js";
 import { getSubjects } from "../../controller/subjects/subject_controller.js";
 import { getSubjectsProject } from "../../controller/subjects/subject_controller.js";
+import { getAllAssignmentsBySubjectId } from "../../controller/subjects/subject_controller.js";
 
 const router=express.Router();
 
@@ -22,5 +23,5 @@ const upload=multer({
 router.post('/createSubject',upload.single('photos'),createSubject);
 router.post('/getSubjects',getSubjects);
 router.post('/getSubjectsProject',getSubjectsProject);
-
+router.post('/getAllAssignmentsBySubjectId',getAllAssignmentsBySubjectId);
 export default router;
